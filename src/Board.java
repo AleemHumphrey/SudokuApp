@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import static java.lang.Math.sqrt;
 
 /**
@@ -30,13 +31,14 @@ public class Board {
 
     // --- Setters ---
     private void setBlankState(){
-        this.state = new byte[size];
+        this.state = new byte[size*size];
+        Arrays.fill(state, (byte) 0);
     }
 
-    public void setState(byte[] state) {
-        this.state = state;
+    public void setState(byte[] newState) {
+        this.state = newState;
     }
-    public void setSize(int size) {
+    private void setSize(int size) {
         if (0<size && size<128 && sqrt(size)%1==0) {
             this.size = size;
         }
