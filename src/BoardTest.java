@@ -7,10 +7,10 @@ class BoardTest {
     @Test
     void getState() {
         Board board = new Board();
-        byte[] expected = new byte[81];
+        int[] expected = new int[81];
         assertArrayEquals(expected, board.getState());
-        for(byte b : board.getState()) {
-            assertEquals((byte) 0, b);
+        for(int b : board.getState()) {
+            assertEquals(0, b);
         }
 
     }

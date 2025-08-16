@@ -5,11 +5,11 @@ import static java.lang.Math.sqrt;
  * Basic class to represent the game state.
  */
 public class Board {
-    private byte[] state;
+    private int[] state;
     private int size;
 
     // --- Initializers ---
-    public Board(byte[] newState) {
+    public Board(int[] newState) {
         setState(newState);
     }
     public Board(int size) {
@@ -22,7 +22,7 @@ public class Board {
     }
 
     // --- Getters ---
-    public byte[] getState() {
+    public int[] getState() {
         return state;
     }
     public int getSize() {
@@ -31,12 +31,13 @@ public class Board {
 
     // --- Setters ---
     private void setBlankState(){
-        this.state = new byte[size*size];
-        Arrays.fill(state, (byte) 0);
+        this.state = new int[size*size];
+        Arrays.fill(state, 0);
     }
 
-    public void setState(byte[] newState) {
+    public void setState(int[] newState) {
         this.state = newState;
+        setSize((int) sqrt(newState.length));
     }
     private void setSize(int size) {
         if (0<size && size<128 && sqrt(size)%1==0) {
