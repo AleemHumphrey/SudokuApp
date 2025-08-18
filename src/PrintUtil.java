@@ -22,8 +22,8 @@ public class PrintUtil {
             for (int col = 0; col < size; col++) {
 //                int cell = state[row * size + col];
 //                String cellString = cell == 0 ? " ".repeat(spacing) : leftPad(cell, spacing);
-//                System.out.printf(" %s ",cellString);
-                System.out.printf(" %s ", (state[row * size + col] == 0 ? " ".repeat(spacing + 2) : leftPad(state[row * size + col], spacing)));
+//                System.out.printf(" %s ", cellString);
+                System.out.printf(" %s ", ((state[row * size + col])) == 0 ? " ".repeat(spacing) : leftPad((state[row * size + col]), spacing));
                 if ((col + 1) % sector == 0) {
                     System.out.print("┃");
                 } else {
