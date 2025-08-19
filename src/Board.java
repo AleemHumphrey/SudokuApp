@@ -1,4 +1,6 @@
 import java.util.Arrays;
+
+import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 /**
@@ -12,37 +14,52 @@ public class Board {
     public Board(int[] newState) {
         setState(newState);
     }
+
     public Board(int size) {
         setSize(size);
         setBlankState();
     }
+
     public Board() {
-        setSize(9);
-        setBlankState();
+        new Board(9);
     }
 
     // --- Getters ---
     public int[] getState() {
         return state;
     }
-    public int getSize() {
-        return size;
-    }
-
-    // --- Setters ---
-    private void setBlankState(){
-        this.state = new int[size*size];
-        Arrays.fill(state, 0);
-    }
 
     public void setState(int[] newState) {
         this.state = newState;
         setSize((int) sqrt(newState.length));
     }
-    private void setSize(int size) {
-        if (0<size && size<128 && sqrt(size)%1==0) {
-            this.size = size;
-        }
+
+    public int getSize() {
+        return size;
     }
 
+    private void setSize(int size) {
+        if (0 >= size) {
+            throw new IllegalArgumentException("Size must be a positive number");
+        }
+        if (pow(sqrt(size), 2) != size) {
+            throw new IllegalArgumentException("Size must be a perfect square");
+        }
+        this.size = size;
+    }
+
+    // --- Setters ---
+    private void setBlankState() {
+        this.state = new int[size * size];
+        Arrays.fill(state, 0);
+    }
+    public void setCellValue(int index, int value) {
+        if (value <= 0 || value > size) {
+            throw new IllegalArgumentException("Value must be a number 1 through" + size);
+        }
+        if (index < 0 || index >= size*size) {
+            throw new IllegalArgumentException("Index out of bounds" + (size - 1));
+        }
+        state[index] = value;
+    }
 }
